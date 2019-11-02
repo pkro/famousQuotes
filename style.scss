@@ -1,0 +1,55 @@
+$debug: 0;
+
+@mixin debug($color) {
+    @if $debug == 1 {
+        border: 2px solid $color;
+    }
+}
+
+body {
+    background: #FFAF42;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    
+}
+a {
+    color: white;
+    
+}
+#quote-box {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 300px;
+    @include debug(black);
+    border-radius: 8px;
+    background: #FD5602;
+    padding: 10px;
+    
+}
+#text {
+    padding: 10px;
+    font-size: 1.3em;
+    height: 60%;
+    overflow: hidden;
+    background-color: #FEDEBE;
+    @include debug(green);
+    border-radius: 8px;
+}
+#author {
+    text-align: right;
+    font-style: italic;
+    color:white;
+}
+.controls {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    @include debug(gray);
+}
+
+#tweet-quote {
+    font-size: 1.2em;
+}

@@ -7,6 +7,7 @@ const quotesLocal = `quotes.json`;
 let quotes = [];
 let quotesShownInSession = [];
 const quotesUrl = useLocal ? quotesLocal : quotesRemote;
+let isFirstShownQuote = true;
 
 $(() => {
     init(quotesUrl, updateQuoteOnLoad)
@@ -17,7 +18,7 @@ const init = (quotesURL, callback) => {
   request.onload = () => {
     quotes = Array.from(JSON.parse(request.responseText));
     if(updateQuoteOnLoad) {
-      updateQuote(getRandomQuote());
+      updateQuote();
     }
     $('#new-quote').click(updateQuote);
     
@@ -43,9 +44,22 @@ const getRandomQuote = () => {
 
 const updateQuote = () => {
   let quote = getRandomQuote();
-  $('#text').text(quote.Quote);
-  $('#author').html(`- ${quote.Author}`);
-  const tweetText = encodeURIComponent(`${quote.Quote}\n\n-${quote.Author}`);
-  $('#tweet-quote').prop('href', `https://twitter.com/intent/tweet?text=${tweetText}`);
+  //window.history.pushState('page2', quote.Quote, '?quote=1');
+  $('#quote-box').addClass('animated fadeOut').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function(e) {
+    
+    $('#text').text(quote.Quote);
+    $('#author').html(`- ${quote.Author}`);
+    const tweetText = encodeURIComponent(`${quote.Quote}\n\n-${quote.Author}`);
+    $('#tweet-quote').prop('href', `https://twitter.com/intent/tweet?text=${tweetText}`);
+    $('#quote-box').removeClass('animated fadeOut');
+    $('#quote-box').addClass('animated fadeIn').on('animationend webkitAnimationEnd MSAnimationEnd oAnimationEnd', function(e) {
+      $('#quote-box').removeClass('animated fadeIn');
+    });
+  });
+  
+  
+  
+  
+  
 }
 

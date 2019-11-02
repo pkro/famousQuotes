@@ -45,5 +45,7 @@ const updateQuote = () => {
   let quote = getRandomQuote();
   $('#text').text(quote.Quote);
   $('#author').text(quote.Author);
+  const tweetText = encodeURIComponent(`${quote.Quote}\n\n-${quote.Author}`);
+  $('#tweet-quote').prop('href', `https://twitter.com/intent/tweet?text=${tweetText}`);
 }
 

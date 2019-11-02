@@ -1,9 +1,8 @@
 useLocal = true;
-useFull = true;
 updateQuoteOnLoad = true;
 
 const quotesRemote = 'https://raw.githubusercontent.com/JamesFT/Database-Quotes-JSON/master/quotes.json';
-const quotesLocal = `quotes${useFull ? '_full' : ''}.json`;
+const quotesLocal = `quotes.json`;
 
 let quotes = [];
 let quotesShownInSession = [];
@@ -44,7 +43,7 @@ const getRandomQuote = () => {
 
 const updateQuote = () => {
   let quote = getRandomQuote();
-  $('#text').text(quote.quoteText);
-  $('#author').text(quote.quoteAuthor);
+  $('#text').text(quote.Quote);
+  $('#author').text(quote.Author);
 }
 
